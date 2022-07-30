@@ -7,4 +7,3 @@ export const ReviewsTitle = styled.h4`
 export const ReviewsTexst = styled.p`
   margin-top: 0px;
 `;
-

@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { searchMovies } from '../../services/api';
 import { SearchBox } from 'components/SearchBox/SearchBox';
-import { MovieList } from 'components/MovieList/MovieList';
+import { MovieListHome } from 'components/MovieListHome/MovieListHome';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,7 +24,7 @@ const Movies = () => {
     <>
       <SearchBox onSubmit={handleSubmit} />
       {movies.length > 0 && (
-        <MovieList movies={movies} />
+        <MovieListHome movies={movies} />
       )}
     </>
   );

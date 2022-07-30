@@ -6,7 +6,7 @@ export const Img = styled.img`
     height: auto;    
 `;
 
-export const CastList = styled.ul`
+export const List = styled.ul`
     margin-top: 16px;
     display: flex;
     flex-wrap: wrap;

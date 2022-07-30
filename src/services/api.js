@@ -1,30 +1,64 @@
 import axios from 'axios';
+import { BASE_URL } from 'constants.api/constants';
+import { API_KEY } from 'constants.api/constants';
+import { TRENDING_URL } from 'constants.api/constants';
+import { SEARCH_URL } from 'constants.api/constants';
 
-axios.defaults.baseURL = 'https://api.themoviedb.org/3';
-
-const API_KEY = `ed13542cc98255e453f3d93d2dcaa225`;
+const customAxios = axios.create({
+  baseURL: BASE_URL,
+});
 
 export const trendingMovies = async () => {
-    const response = await axios.get(`trending/movie/day?api_key=${API_KEY}`);
+  try {
+    const response = await customAxios.get(TRENDING_URL, {
+      params: { api_key: API_KEY }
+    })
     return response.data.results;
+  } catch {
+    console.log('error');
+  }
 };
 
 export const searchMovies = async (query) => {
-    const response = await axios.get(`search/movie?api_key=${API_KEY}&query=${query}`);
+  try {
+      const response = await customAxios.get(SEARCH_URL, {
+      params: { api_key: API_KEY , query: query}
+    });
     return response.data.results;
+   } catch {
+    console.log('error');
+  }
 };
 
 export const getMoviesById = async (id) => {
-    const response = await axios.get(`movie/${id}?api_key=${API_KEY}`);
+  try {
+    const response = await customAxios.get(`movie/${id}`, {
+      params: { api_key: API_KEY }
+    });
     return response.data;
+   } catch {
+    console.log('error');
+  }
 };
 
 export const getMovieCast = async (id) => {
-    const response = await axios.get(`movie/${id}/credits?api_key=${API_KEY}`);
+  try {
+    const response = await customAxios.get(`movie/${id}/credits`, {
+      params: { api_key: API_KEY }
+    });
     return response.data.cast;
+     } catch {
+    console.log('error');
+  }
 };
 
 export const getMovieReviews = async (id) => {
-    const response = await axios.get(`movie/${id}/reviews?api_key=${API_KEY}`);
+  try {
+    const response = await customAxios.get(`movie/${id}/reviews`, {
+      params: { api_key: API_KEY }
+    });
     return response.data.results;
+     } catch {
+    console.log('error');
+  }
 };

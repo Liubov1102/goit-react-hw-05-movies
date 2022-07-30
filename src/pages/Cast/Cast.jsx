@@ -8,13 +8,11 @@ const Cast = () => {
 	const [cast, setCast] = useState([]);
 
 	useEffect(() => {
-		getMovieCast(movieId).then(setCast).catch()
+		getMovieCast(movieId).then(setCast)
 	}, [movieId])
-
 	return (
-		<>
-			<CastList cast={cast}/>
-			 
+		<>      
+			<CastList cast={cast}/>      
 		</>
 	);
 };
