@@ -1,26 +1,10 @@
-import { useState, useEffect} from 'react';
-import {  useParams} from 'react-router-dom';
-import { getMoviesById } from "../../services/api";
+
 import { Image, Label, OverviewText, Wrapper, Description, Title } from './MovieDetailsList.styled';
 
-const INIT_STATE = {
-  title: '',
-  poster_path: '',
-  vote_average: '',
-  overview: '',
-  genres: [],
-};  
+export const MovieDetailsList = ({ movie }) => {
 
-export const MovieDetailsList = () => {
-  const { movieId } = useParams();
-  const [movie, setMovie] = useState(INIT_STATE);
   const { title, poster_path, vote_average, overview, genres } = movie;
   const movieGenres = genres.map(genre => genre.name).join(', ');
-
-  useEffect(() => {
-    getMoviesById(movieId).then(setMovie);
-  }
-    , [movieId]);
 
   return (
     <Wrapper>
@@ -39,4 +23,5 @@ export const MovieDetailsList = () => {
     </Wrapper>
   )
 };
+
 

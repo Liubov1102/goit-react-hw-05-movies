@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Formik } from 'formik';
-import 'react-toastify/dist/ReactToastify.css';
 import PropTypes from 'prop-types';
 import { Button, Input , Icon, SearchForm} from 'components/SearchBox/SearchBox.styled';
 

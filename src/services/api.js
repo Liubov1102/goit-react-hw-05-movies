@@ -1,18 +1,16 @@
 import axios from 'axios';
-import { BASE_URL } from 'constants.api/constants';
-import { API_KEY } from 'constants.api/constants';
-import { TRENDING_URL } from 'constants.api/constants';
-import { SEARCH_URL } from 'constants.api/constants';
+import { BASE_URL } from 'constants/constants';
+import { API_KEY } from 'constants/constants';
 
 const customAxios = axios.create({
-  baseURL: BASE_URL,
+  baseURL: BASE_URL, params: {
+    api_key: API_KEY,
+  },
 });
 
 export const trendingMovies = async () => {
   try {
-    const response = await customAxios.get(TRENDING_URL, {
-      params: { api_key: API_KEY }
-    })
+    const response = await customAxios.get(`trending/movie/day` )
     return response.data.results;
   } catch {
     console.log('error');
@@ -21,8 +19,8 @@ export const trendingMovies = async () => {
 
 export const searchMovies = async (query) => {
   try {
-      const response = await customAxios.get(SEARCH_URL, {
-      params: { api_key: API_KEY , query: query}
+      const response = await customAxios.get(`search/movie`, {
+      params: { query: query}
     });
     return response.data.results;
    } catch {
@@ -32,9 +30,7 @@ export const searchMovies = async (query) => {
 
 export const getMoviesById = async (id) => {
   try {
-    const response = await customAxios.get(`movie/${id}`, {
-      params: { api_key: API_KEY }
-    });
+    const response = await customAxios.get(`movie/${id}`);
     return response.data;
    } catch {
     console.log('error');
@@ -43,9 +39,7 @@ export const getMoviesById = async (id) => {
 
 export const getMovieCast = async (id) => {
   try {
-    const response = await customAxios.get(`movie/${id}/credits`, {
-      params: { api_key: API_KEY }
-    });
+    const response = await customAxios.get(`movie/${id}/credits`);
     return response.data.cast;
      } catch {
     console.log('error');
@@ -54,9 +48,7 @@ export const getMovieCast = async (id) => {
 
 export const getMovieReviews = async (id) => {
   try {
-    const response = await customAxios.get(`movie/${id}/reviews`, {
-      params: { api_key: API_KEY }
-    });
+    const response = await customAxios.get(`movie/${id}/reviews`);
     return response.data.results;
      } catch {
     console.log('error');
