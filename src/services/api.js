@@ -1,9 +1,12 @@
 import axios from 'axios';
 import { BASE_URL } from 'constants/constants';
 import { API_KEY } from 'constants/constants';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const customAxios = axios.create({
-  baseURL: BASE_URL, params: {
+  baseURL: BASE_URL,
+  params: {
     api_key: API_KEY,
   },
 });
@@ -13,7 +16,7 @@ export const trendingMovies = async () => {
     const response = await customAxios.get(`trending/movie/day` )
     return response.data.results;
   } catch {
-    console.log('error');
+     toast.error('error');
   }
 };
 
@@ -24,7 +27,7 @@ export const searchMovies = async (query) => {
     });
     return response.data.results;
    } catch {
-    console.log('error');
+    toast.error('error');
   }
 };
 
@@ -33,7 +36,7 @@ export const getMoviesById = async (id) => {
     const response = await customAxios.get(`movie/${id}`);
     return response.data;
    } catch {
-    console.log('error');
+    toast.error('error');
   }
 };
 
@@ -42,7 +45,7 @@ export const getMovieCast = async (id) => {
     const response = await customAxios.get(`movie/${id}/credits`);
     return response.data.cast;
      } catch {
-    console.log('error');
+    toast.error('error');
   }
 };
 
@@ -50,7 +53,7 @@ export const getMovieReviews = async (id) => {
   try {
     const response = await customAxios.get(`movie/${id}/reviews`);
     return response.data.results;
-     } catch {
-    console.log('error');
+  } catch {
+    toast.error('error');
   }
 };

@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { SharedLayout } from "Layout/SharedLayout";
 
@@ -10,18 +10,18 @@ const Reviews = lazy(() => import("pages/MovieDetails/Reviews/Reviews"));
 
 export const App = () => {
   return (
- 
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Home />} />
-        <Route path="movies" element={<Movies />} />
-        <Route path="movies/:movieId" element={<MovieDetails />} >
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
+    <Suspense fallback={<div>Loading page...</div>}>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="movies" element={<Movies />} />
+          <Route path="movies/:movieId" element={<MovieDetails />} >
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<Navigate replace to="/" />} />
         </Route>
-        <Route path="*" element={<Navigate replace to="/" />} />
-      </Route>
-    </Routes>
-      
+      </Routes>
+    </Suspense>
   );
 };

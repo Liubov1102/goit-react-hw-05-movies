@@ -7,13 +7,13 @@ import { MovieList } from 'components/MovieList/MovieList';
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
-
+  
   const handleSubmit = value => {
     setSearchParams({ query: value });
-  };
+  }; 
   
   useEffect(() => {
-    const query = searchParams.get('query') || '';
+    const query = searchParams.get('query');
     if (query) {
       searchMovies(query)
         .then(setMovies);
